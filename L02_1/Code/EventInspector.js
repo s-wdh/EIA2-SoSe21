@@ -10,6 +10,7 @@ var L02_1_EventInspector;
         installListenersInDOM(div0);
         let div1 = document.querySelector(".div1");
         installListenersInDOM(div1);
+        buttonClicked();
     }
     function installListenersInDOM(_target) {
         while (true) {
@@ -25,8 +26,14 @@ var L02_1_EventInspector;
     function setInfoBox(_event) {
         let x = _event.offsetX;
         let y = _event.offsetY;
-        let span = document.querySelector("span");
-        //span.style.height = 50 + "px";
+        let oldSpan = document.querySelectorAll("span");
+        for (let i = 0; i < oldSpan.length; i++) {
+            oldSpan[i].remove();
+        }
+        //let span: HTMLSpanElement = <HTMLSpanElement>document.querySelector("span");
+        let span = document.createElement("span");
+        let target = _event.target;
+        target.appendChild(span);
         span.innerHTML = "Mouse Position: x = " + x + "px, y = " + y + "px";
         span.innerHTML += "<br>";
         span.innerHTML += "Target: " + _event.target;
@@ -40,6 +47,19 @@ var L02_1_EventInspector;
         console.log("Current Target: " + _event.currentTarget);
         console.log(_event);
         console.groupEnd();
+    }
+    function buttonClicked() {
+        const button = document.querySelector("#button");
+        //create new event; bubbling must be
+        const event = new CustomEvent("button", {
+            bubbles: true
+        });
+        document.addEventListener("button", (e) => {
+            console.log(e);
+        });
+        button.addEventListener("click", (e) => {
+            e.target?.dispatchEvent(event);
+        });
     }
 })(L02_1_EventInspector || (L02_1_EventInspector = {})); //namespace
 //# sourceMappingURL=EventInspector.js.map
