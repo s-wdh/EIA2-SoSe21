@@ -18,6 +18,7 @@ var L03_Memory;
     let data = new FormData(document.forms[0]);
     let cardexample = document.getElementById("card");
     let cardtext = document.getElementById("cardamount");
+    let pairsamount;
     let size;
     let backgroundColor;
     let cardbackColor;
@@ -40,38 +41,28 @@ var L03_Memory;
             let setting = "[value='" + entry[1] + "']";
             let item = document.querySelector(setting);
             console.log(item);
-            switch (entry[0]) {
-                case "pairs":
-                    let pairsamount = Number(data.get("#pairs"));
-                    cardtext.innerHTML = "" + pairsamount;
-                    break;
-                case "cardsize":
-                    size = Number(data.get("#cardsize"));
-                    break;
-                case "background-color":
-                    backgroundColor = String(data.get("#background-color"));
-                    cardexample.style.backgroundColor = backgroundColor;
-                    break;
-                case "cardback-color":
-                    cardbackColor = String(data.get("#cardback-color"));
-                    break;
-                case "font-color":
-                    fontColor = String(data.get("#font-color"));
-                    cardtext.style.color = fontColor;
-                    break;
-                case "font":
-                    font = String(item.getAttribute("value"));
-                    if (font == "arial") {
-                        cardtext.classList.add("arial");
-                    }
-                    else if (font == "times") {
-                        cardtext.classList.add("times");
-                    }
-                    else if (font == "fantasy") {
-                        cardtext.classList.add("fantasy");
-                    }
-                    break;
+            pairsamount = Number(data.get("#pairs"));
+            cardtext.innerHTML = "" + pairsamount;
+            size = Number(data.get("#cardsize"));
+            backgroundColor = String(data.get("#background-color"));
+            cardexample.style.backgroundColor = backgroundColor;
+            cardbackColor = String(data.get("#cardback-color"));
+            fontColor = String(data.get("#font-color"));
+            cardtext.style.color = fontColor;
+            font = String(data.get(".font"));
+            if (font == "arial") {
+                cardtext.classList.add("arial");
+                font = "arial";
             }
+            else if (font == "times") {
+                cardtext.classList.add("times");
+                font = "times";
+            }
+            else if (font == "fantasy") {
+                cardtext.classList.add("fantasy");
+                font = "fantasy";
+            }
+            break;
         }
     }
     function prepareGame() {
@@ -91,6 +82,11 @@ var L03_Memory;
             let cardnumber = gameCards[position];
             let cardnumberstring = "" + cardnumber.toString;
             card.classList.add(cardnumberstring);
+            card.style.background = cardbackColor;
+            card.style.width = size + "px";
+            card.style.height = size + "px";
+            card.style.color = fontColor;
+            card.classList.add("font");
             gameCards.splice(position);
             gameSpace.appendChild(card);
             card.addEventListener("click", showCard);
@@ -103,12 +99,14 @@ var L03_Memory;
             if (counter == 0) {
                 let target1 = _event.target;
                 target1.textContent = target1.className;
+                target1.style.background = backgroundColor;
                 selectedCards.push(target1);
                 card1 = target1.className;
             }
             else {
                 let target2 = _event.target;
                 target2.textContent = target2.className;
+                target2.style.background = backgroundColor;
                 card2 = target2.className;
             }
             counter++;

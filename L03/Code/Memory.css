@@ -35,3 +35,9 @@ h1 {
 .hidden {
     visibility: hidden;
   }
+
+#gamespace {
+    background-color: aliceblue;
+    width: 100%;
+    min-height: 200px;
+}
