@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory</title>
+    <script src="Memory.js"></script>
+    <link rel="stylesheet" href="Memory.css">
+</head>
+<body>
+    <h1>Memory</h1>
+    <p id="info">Welcome to the game: Choose your settings here</p>
+    <div id="form">
+        <p>amount of pairs: </p> <input type="number" name="pairs" id="pairs" min="5" max="25"> 
+        <br>
+        <p>card size </p>
+        <input type="range" name="cardsize" id="cardsize" min="1" max="5" step="1.0" value="2.0">
+        <br>
+        <label for="background-color">background-color</label>
+        <input type="color" name="background-color" id="background-color">
+        <br>
+        <label for="cardback-color">cardback-color</label>
+        <input type="color" name="cardback-color" id="cardback-color">
+        <br>
+        <label for="font-color">font-color</label>
+        <input type="color" name="font-color" id="font-color">
+        <br>
+        <p>choose font:</p>
+        <label for="arial">Arial</label><input type="radio" name="font" id="arial">
+        <label for="times">Times</label><input type="radio" name="font" id="times">
+        <label for="fantasy">Fantasy</label><input type="radio" name="font" id="fantasy">
+    </div>
+
+    <div id="card">
+        <p id="cardamount"></p>
+    </div>
+    <button type="button" id="start">start game</button>
+
+    <div id="gamespace" disabled></div>
+    
+</body>
+</html>

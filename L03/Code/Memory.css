@@ -1,0 +1,22 @@
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+h1 {
+    color: #000000;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#arial {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#times {
+    font-family: 'Times New Roman', Times, serif
+}
+
+#fantasy {
+    font-family: fantasy;
+}
