@@ -6,6 +6,12 @@ namespace L03_Memory {
 
     let info: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("info");
     let form: HTMLDivElement = <HTMLDivElement>document.getElementById("form");
+    /* let pairsInput: HTMLInputElement = <HTMLInputElement>document.getElementById("pairs");
+    let cardsizeInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cardsize");
+    let backgroundInput: HTMLInputElement = <HTMLInputElement>document.getElementById("background-color");
+    let cardbackInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cardback-color");
+    let fontcolorInput: HTMLInputElement = <HTMLInputElement>document.getElementById("font-color");
+    let fontInput: HTMLInputElement = <HTMLInputElement>document.getElementById("font"); */
     let data: FormData = new FormData(document.forms[0]);
     let cardexample: HTMLDivElement = <HTMLDivElement>document.getElementById("card");
     let cardtext: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("cardamount");
@@ -13,13 +19,19 @@ namespace L03_Memory {
     let backgroundColor: string;
     let cardbackColor: string;
     let fontColor: string;
-    let font: string
+    let font: string;
     let counter: number = 0;
 
     window.addEventListener("load", handleLoad);
 
     function handleLoad(): void {
-        form.addEventListener("input", getFormData);
+        /* pairsInput?.addEventListener("input", getFormData);
+        cardsizeInput?.addEventListener("input", getFormData);
+        backgroundInput?.addEventListener("input", getFormData);
+        cardbackInput?.addEventListener("input", getFormData);
+        fontcolorInput?.addEventListener("input", getFormData);
+        fontInput?.addEventListener("input", getFormData); */
+        form?.addEventListener("input", getFormData);
         let start: HTMLButtonElement = <HTMLButtonElement>document.getElementById("start");
         start?.addEventListener("click", prepareGame);
     }
@@ -40,12 +52,14 @@ namespace L03_Memory {
                     break;
                 case "background-color":
                     backgroundColor = String(data.get("#background-color"));
+                    cardexample.style.backgroundColor = backgroundColor;
                     break;
                 case "cardback-color":
                     cardbackColor = String(data.get("#cardback-color"));
                     break;
                 case "font-color":
                     fontColor = String(data.get("#font-color"));
+                    cardtext.style.color = fontColor;
                     break;
                 case "font":
                     font = String(item.getAttribute("value"));
@@ -73,7 +87,9 @@ namespace L03_Memory {
         for (let k: number = 0; k < gameCards.length; k++) {
             let position: number = Math.floor(Math.random() * gameCards.length);
             let card: HTMLDivElement = document.createElement("div");
-            card.classList.add(gameCards(position).valueOf);
+            let cardnumber: number = gameCards[position];
+            let cardnumberstring: string = "" + cardnumber.toString;
+            card.classList.add(cardnumberstring);
             gameCards.splice(position);
             gameSpace.appendChild(card);
             card.addEventListener("click", showCard);
