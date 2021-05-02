@@ -1,11 +1,13 @@
 namespace L03_Memory {
     let allCards: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
     let gameCards: number[] = [];
+    let selectedCards: HTMLDivElement[] = [];
     let startTime: any;
     let gameSpace: HTMLDivElement = <HTMLDivElement>document.getElementById("gamespace");
 
     let info: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("info");
     let form: HTMLDivElement = <HTMLDivElement>document.getElementById("form");
+    let start: HTMLButtonElement = <HTMLButtonElement>document.getElementById("start");
     /* let pairsInput: HTMLInputElement = <HTMLInputElement>document.getElementById("pairs");
     let cardsizeInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cardsize");
     let backgroundInput: HTMLInputElement = <HTMLInputElement>document.getElementById("background-color");
@@ -32,7 +34,6 @@ namespace L03_Memory {
         fontcolorInput?.addEventListener("input", getFormData);
         fontInput?.addEventListener("input", getFormData); */
         form?.addEventListener("input", getFormData);
-        let start: HTMLButtonElement = <HTMLButtonElement>document.getElementById("start");
         start?.addEventListener("click", prepareGame);
     }
 
@@ -78,6 +79,8 @@ namespace L03_Memory {
     function prepareGame(): void {
         info.innerHTML = "click on the cards and try to find pairs...";
         form.innerHTML = "";
+        start.hidden = true;
+        gameSpace.hidden = false;
         let pairsamount: number = Number(data.get("#pairs"));
         for (let i: number = 0; i < pairsamount; i++) {
             let card: any = allCards.splice(0);
@@ -103,6 +106,7 @@ namespace L03_Memory {
             if (counter == 0) {
                 let target1: HTMLDivElement = <HTMLDivElement>_event.target;
                 target1.textContent = target1.className;
+                selectedCards.push(target1);
                 card1 = target1.className;
             } else {
                 let target2: HTMLDivElement = <HTMLDivElement>_event.target;
@@ -110,8 +114,22 @@ namespace L03_Memory {
                 card2 = target2.className;
             }
             counter++;
+        } else if (counter == 2) {
+            if (card1 == card2) {
+                selectedCards[0].classList.add("hidden");
+                selectedCards[1].classList.add("hidden");
+                selectedCards.splice(2);
+                gameEnd();
+            } else {
+                selectedCards[1].textContent = "";
+                selectedCards[0].textContent = "";
+                selectedCards[0].style.background = cardbackColor;
+                selectedCards[1].style.background = cardbackColor;
+                selectedCards = [];
+            }
+
         }
-        gameEnd();
+
     }
 
     function gameEnd(): void {

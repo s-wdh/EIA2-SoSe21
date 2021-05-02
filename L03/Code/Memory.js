@@ -3,10 +3,12 @@ var L03_Memory;
 (function (L03_Memory) {
     let allCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
     let gameCards = [];
+    let selectedCards = [];
     let startTime;
     let gameSpace = document.getElementById("gamespace");
     let info = document.getElementById("info");
     let form = document.getElementById("form");
+    let start = document.getElementById("start");
     /* let pairsInput: HTMLInputElement = <HTMLInputElement>document.getElementById("pairs");
     let cardsizeInput: HTMLInputElement = <HTMLInputElement>document.getElementById("cardsize");
     let backgroundInput: HTMLInputElement = <HTMLInputElement>document.getElementById("background-color");
@@ -31,7 +33,6 @@ var L03_Memory;
         fontcolorInput?.addEventListener("input", getFormData);
         fontInput?.addEventListener("input", getFormData); */
         form?.addEventListener("input", getFormData);
-        let start = document.getElementById("start");
         start?.addEventListener("click", prepareGame);
     }
     function getFormData(_event) {
@@ -76,6 +77,8 @@ var L03_Memory;
     function prepareGame() {
         info.innerHTML = "click on the cards and try to find pairs...";
         form.innerHTML = "";
+        start.hidden = true;
+        gameSpace.hidden = false;
         let pairsamount = Number(data.get("#pairs"));
         for (let i = 0; i < pairsamount; i++) {
             let card = allCards.splice(0);
@@ -100,6 +103,7 @@ var L03_Memory;
             if (counter == 0) {
                 let target1 = _event.target;
                 target1.textContent = target1.className;
+                selectedCards.push(target1);
                 card1 = target1.className;
             }
             else {
@@ -109,7 +113,21 @@ var L03_Memory;
             }
             counter++;
         }
-        gameEnd();
+        else if (counter == 2) {
+            if (card1 == card2) {
+                selectedCards[0].classList.add("hidden");
+                selectedCards[1].classList.add("hidden");
+                selectedCards.splice(2);
+                gameEnd();
+            }
+            else {
+                selectedCards[1].textContent = "";
+                selectedCards[0].textContent = "";
+                selectedCards[0].style.background = cardbackColor;
+                selectedCards[1].style.background = cardbackColor;
+                selectedCards = [];
+            }
+        }
     }
     function gameEnd() {
         if (gameSpace.children.length < 1) {
