@@ -36,6 +36,25 @@ var L03_Memory;
                     size = Number(data.get("#cardsize"));
                     break;
                 case "background-color":
+                    backgroundColor = String(data.get("#background-color"));
+                    break;
+                case "cardback-color":
+                    cardbackColor = String(data.get("#cardback-color"));
+                    break;
+                case "font-color":
+                    fontColor = String(data.get("#font-color"));
+                    break;
+                case "font":
+                    font = String(item.getAttribute("value"));
+                    if (font == "arial") {
+                        cardtext.classList.add("arial");
+                    }
+                    else if (font == "times") {
+                        cardtext.classList.add("times");
+                    }
+                    else if (font == "fantasy") {
+                        cardtext.classList.add("fantasy");
+                    }
                     break;
             }
         }

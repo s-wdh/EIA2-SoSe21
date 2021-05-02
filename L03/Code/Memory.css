@@ -9,14 +9,25 @@ h1 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#arial {
+.arial {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#times {
+.times {
     font-family: 'Times New Roman', Times, serif
 }
 
-#fantasy {
+.fantasy {
     font-family: fantasy;
+}
+
+#card {
+    width: 50px;
+    height: 100px;
+    position: absolute;
+    top: 200px;
+    left: 500px;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 2px;
 }
