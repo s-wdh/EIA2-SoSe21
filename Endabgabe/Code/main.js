@@ -348,10 +348,10 @@ var Football;
         for (let player of moveables) {
             if (player instanceof Football.PlayerTeamOne || player instanceof Football.PlayerTeamTwo) {
                 let distance = Football.Vector.getDifference(player.startPosition, ball.position);
-                if (distance.length > 154) {
+                if (distance.length > 160) {
                     player.move(player.startPosition);
                 }
-                else if (distance.length <= 154) {
+                else if (distance.length <= 160) {
                     player.move(ball.position);
                     playerAtBall(player);
                 }

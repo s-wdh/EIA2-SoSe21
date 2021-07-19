@@ -356,9 +356,9 @@ namespace Football {
         for (let player of moveables) {
             if (player instanceof PlayerTeamOne || player instanceof PlayerTeamTwo) {
                 let distance: Vector = Vector.getDifference(player.startPosition, ball.position);
-                if (distance.length > 154) {
+                if (distance.length > 160) {
                     player.move(player.startPosition);
-                } else if (distance.length <= 154) {
+                } else if (distance.length <= 160) {
                     player.move(ball.position);
                     playerAtBall(player);
                 }
