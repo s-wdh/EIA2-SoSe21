@@ -33,7 +33,7 @@ var Football;
             this.position.add(offset);
             //check if ball is shoot out of the field
             if (this.position.x < 35) {
-                this.position.x = 35;
+                this.position.x = 36;
             }
             if (this.position.x == 35) {
                 if (this.position.y < 247.4) {
@@ -44,7 +44,7 @@ var Football;
                 }
             }
             if (this.position.x > 770) {
-                this.position.x = 770;
+                this.position.x = 769;
             }
             if (this.position.x == 770) {
                 if (this.position.y < 247.4) {
@@ -55,10 +55,10 @@ var Football;
                 }
             }
             if (this.position.y < 35) {
-                this.position.y = 35;
+                this.position.y = 36;
             }
             if (this.position.y > 511) {
-                this.position.y = 511;
+                this.position.y = 510;
             }
         }
         setBack() {
