@@ -36,30 +36,30 @@ namespace Football {
 
             //check if ball is shoot out of the field
             if (this.position.x < 35) {
-                this.position.x = 36;
+                this.position.x = 35;
             }
             if (this.position.x == 35) {
                 if (this.position.y < 247.4) {
-                    this.position.y = 36;
+                    this.position.y = 35;
                 } else if (this.position.y > 298.6) {
-                    this.position.y = 510;
+                    this.position.y = 511;
                 }
             }
             if (this.position.x > 770) {
-                this.position.x = 769;
+                this.position.x = 770;
             }
             if (this.position.x == 770) {
                 if (this.position.y < 247.4) {
-                    this.position.y = 36;
+                    this.position.y = 35;
                 } else if (this.position.y > 298.6) {
-                    this.position.y = 510;
+                    this.position.y = 511;
                 }
             }
             if (this.position.y < 35) {
-                this.position.y = 36;
+                this.position.y = 35;
             }
             if (this.position.y > 511) {
-                this.position.y = 510;
+                this.position.y = 511;
             }
         }
 
